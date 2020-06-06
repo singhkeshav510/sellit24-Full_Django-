@@ -1,0 +1,120 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+	<div class="total-ads main-grid-border">
+		<div class="container">
+			<div class="select-box container">
+				<div class="select-city-for-local-ads ads-list">
+
+				
+				
+				<div class="clearfix"></div>
+			</div>
+		
+			<ol class="breadcrumb" style="margin-bottom: 5px;">
+
+			  <li><a href="{% url 'Products:product_list' %}">Home</a></li>
+
+	
+			  
+
+			  <li class="active">My Ads</li>
+	
+			</ol> 
+			<div class="ads-grid">
+
+				<div class="ads-display col-md-9">
+					<div class="wrapper">					
+					<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+					  <ul id="myTab" class="nav nav-tabs nav-tabs-responsive" role="tablist">
+						<li role="presentation" class="active">
+						  <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
+							
+					
+							<span class="text">My Ads</span>
+						
+						  </a>
+						</li>
+
+						
+					  </ul>
+					  <div id="myTabContent" class="tab-content">
+						<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+						   <div>
+												<div id="container">
+
+
+								<div class="clearfix"></div>
+							<ul class="list">
+								{% if product_list %}
+								
+									{% for product in product_list %}
+										
+									<a href="{% url 'Products:product_detail' product.slug %}">
+										<li>
+										{% if product.image %}
+										<img src="{{product.image.url}}" title="{{product.name}}" alt="{{product.name}}" />
+											{% endif %}
+										<section class="list-left">
+										<h5 class="title">{{product.name}}</h5>
+										<span class="adprice">₹{{product.price}}</span>
+										<p class="catpath">{{product.category}} » {{product.brand}}</p>
+										</section>
+										<section class="list-right">
+										<span class="date">{{product.created}}</span>
+										<span class="cityname">{{product.city_name}}</span>
+										</section>
+										<div class="clearfix"></div>
+										</li> 
+                                    </a>
+                                    <a class="btn btn-default" href="{% url 'Products:edit_product' product.slug %}"><span class="glyphicon glyphicon-pencil"></span></a>
+									<a class="btn btn-default" href="{% url 'Products:delete_product' product.slug %}"><span class="glyphicon glyphicon-remove-circle"></span></a>
+									{% endfor %}
+
+									
+								
+								{% else %}
+								<li>
+									<section class="">
+									<h5 class="">No Ads Available</h5>
+									</section>
+									<div class="clearfix"></div>
+									</li> 
+								
+								{% endif %}
+								
+							</ul>
+						</div>
+							</div>
+						</div>
+						{% if product_list.paginator.num_pages > 1 %}
+						{% if product_list.has_other_pages %}
+						<ul class="pagination pagination-sm">
+							{% if product_list.has_previous %}
+							<li><a href="?page={{ product_list.previous_page_number }}">Prev</a></li>
+							{% endif %}
+							{% for pages in product_list.paginator.page_range %}
+								{% ifequal product_list.number pages %}
+									<li class="disabled"><a href="?page={{ product_list.number }}">{{pages}}</a></li>
+								{% else %}
+								<li><a href="?page={{ pages.number }}">{{pages}}</a></li>
+								{% endifequal %}
+							{% endfor %}
+							{% if product_list.has_next %}
+							<li><a href="?page={{ product_list.next_page_number }}">Next</a></li>
+							{% endif %}
+						</ul>
+						{% endif %}
+						{% endif %}
+					  </div>
+					</div>
+				</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>	
+	</div>
+
+	{% endblock body %}

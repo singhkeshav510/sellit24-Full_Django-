@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+	<div class="single-page main-grid-border">
+		<div class="container">
+			<ol class="breadcrumb" style="margin-bottom: 5px;">
+			
+				<li><a href="{% url 'Products:product_list' %}">All Ads</a></li>
+				<li class="active">{{product_detail.category}}</li>
+			</ol>
+			<div class="product-desc">
+				<div class="col-md-7 product-view">
+					<h2>{{product_detail.name}}</h2>
+					<p> <i class="glyphicon glyphicon-map-marker"></i><a href="#">{{product_detail.city_name}}</a>| Added on : {{product_detail.created}}, Product ID: {{product_detail.id}}</p>
+					<div class="flexslider">
+						<ul class="slides">
+							<li data-thumb="{{ product_detail.image.url}}">
+								<img src=" {{product_detail.image.url}}" />
+							</li>
+							{% for image in product_images %}
+							<li data-thumb="{{ image.image.url}}">
+								<img src=" {{ image.image.url}}" />
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+					<!-- FlexSlider -->
+					  <script defer src="{% static 'js/jquery.flexslider.js' %}"></script>
+					<link rel="stylesheet" href="{% static 'css/flexslider.css' %}" type="text/css" media="screen" />
+
+						<script>
+					// Can also be used with $(document).ready()
+					$(window).load(function() {
+					  $('.flexslider').flexslider({
+						animation: "slide",
+						controlNav: "thumbnails"
+					  });
+					});
+					</script>
+					<div class="product-details">
+						<h4>Brand : <a href="#">{{product_detail.brand}}</a></h4>
+						<p><strong>Description</strong> : {{product_detail.description}}</p>
+					
+					</div>
+
+				</div>
+				<div class="col-md-5 product-details-grid">
+					<div class="item-price">
+						<div class="product-price">
+							<p class="p-price">Price</p>
+							<h3 class="rate">₹ {{product_detail.price}}</h3>
+							<div class="clearfix"></div>
+						</div>
+						<div class="condition">
+							<p class="p-price">Condition</p>
+							<h4>{{product_detail.condition}}</h4>
+							<div class="clearfix"></div>
+						</div>
+						<div class="itemtype">
+							<p class="p-price">Category</p>
+							<h4>{{product_detail.category}}</h4>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					<div class="interested text-center">
+						<h4>Interested in this Ad?<small> Contact the Seller!</small></h4>
+						<p><i class="glyphicon glyphicon-envelope"></i>{{product_detail.owner.email}}</p>
+					</div>
+						<div class="tips">
+						<h4>Safety Tips for Buyers</h4>
+							<ol>
+								<li><a href="#">Be aware of frauds</a></li>
+
+
+							</ol>
+						</div>
+				</div>
+			<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+{% endblock body %}

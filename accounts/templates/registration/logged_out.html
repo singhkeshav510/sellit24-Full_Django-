@@ -1,0 +1,24 @@
+{% extends 'base2.html' %}
+
+{% block body %}
+	 <section>
+			<div id="page-wrapper" class="sign-in-wrapper">
+				<div class="graphs">
+					<div class="sign-in-form">
+						<div class="sign-in-form-top">
+                            <h1>You have been logged out.</h1>
+                           
+                            
+						</div>
+                        <div class="sign-in-form-top">
+                            
+                            <a href="{% url 'Products:product_list' %}">Go to Homepage</a> 
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+    </section>
+    {% endblock body %}

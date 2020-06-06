@@ -1,0 +1,38 @@
+{% extends 'base2.html' %}
+{% load bootstrap4 %}
+{% block body %}
+	 <section>
+			<div id="page-wrapper" class="sign-in-wrapper">
+				<div class="graphs">
+					<div class="sign-in-form">
+						<div class="sign-in-form-top">
+							<h1>Log in</h1>
+						</div>
+						<div class="signin">
+							
+                            <form  method="post" class="form">
+                                {% csrf_token %}
+                                {% bootstrap_form form %}
+                                {% buttons %}
+                                    <input type="submit" class="btn btn-primary" value="Login"/>
+                                {% endbuttons %}
+                            </form>
+                            <div class="signin-rit">
+								<span class="">
+									 <label class="btn-primary">Forgot Password ?</label>
+								</span>
+								<p><a class="btn btn-primary" href="{% url 'password_reset' %}">Click Here</a> </p>
+								<div class="clearfix"> </div>
+							</div>
+						</div>
+						<div class="new_people">
+							<h2>For New People</h2>
+							<p>In hands of Administrator</p>
+								<a href="{% url 'admin:index' %}">Register Now</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+    </section>
+    {% endblock body %}
