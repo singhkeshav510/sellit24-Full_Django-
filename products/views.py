@@ -37,7 +37,23 @@ def product_list(request, category_slug=None,location_slug=None):
     context={'product_list':productlist,'category_list':categorylist,'category':category,'product_by_date':productbydate,'city_name':city,'location_list':locationlist}
     return render(request, template , context)
 
+def home_list(request, category_slug=None):
+    category=None
 
+    productlist=Product.objects.all()
+    categorylist=Category.objects.all()
+
+    now = datetime.now()
+    earlier = now - timedelta(hours=24)
+    productbydate=Product.objects.filter(created__range=(earlier,now))[:4]
+
+    if category_slug:
+        category=get_object_or_404(Category,slug=category_slug)
+        productlist=productlist.filter(category=category)
+
+    template='Product/home.html'
+    context={'product_list':productlist,'category_list':categorylist,'category':category,'product_by_date':productbydate}
+    return render(request, template , context)
 
 
 def product_detail(request,product_slug):

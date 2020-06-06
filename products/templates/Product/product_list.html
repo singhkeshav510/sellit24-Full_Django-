@@ -51,39 +51,7 @@
 						</form>
 					</div>
 					{% endif %}
-					<div class="featured-ads">
-						<h2 class="sear-head fer">Featured Ads</h2>
-						{% if product_by_date %}
-					{% for featured in product_by_date %}
-						<div class="featured-ad">
-							<a href="{% url 'Products:product_detail' featured.slug %}">
-								<div class="featured-ad-left">
-								
-									<img src="{{featured.image.url}}" title="ad image" alt="" />
-							
-								</div>
-								<div class="featured-ad-right">
-									<h4>{{featured.name}}</h4>
-									<p>₹ {{featured.price}}</p>
-								</div>
-								<div class="clearfix"></div>
-							</a>
-						</div>
-					{% endfor %}
-					<div class="clearfix"></div>
-					{% else %}
-					
-	
-							<div class="text-center">
-								<h4>No Featured Ads</h4>
-								
-							</div>
-							<div class="clearfix"></div>
-						
-					
-					<div class="clearfix"></div>
-					{% endif %}
-					</div>
+
 
 				</div>
 				<div class="ads-display col-md-9">

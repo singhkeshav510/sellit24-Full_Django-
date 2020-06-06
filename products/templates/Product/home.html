@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+	
+		<div class="content">
+			<div class="categories">
+				<div class="container">
+                    {% for category in category_list %}
+					<div class="col-md-2 focus-grid">
+						<a href="{% url 'Products:product_list_category' category.slug %}">
+							<div class="focus-border">
+								<div class="focus-layout">
+									<div class="focus-image"><img src="{{category.image.url}}"/></div>
+									<h4 class="clrchg">{{category.category_name}}</h4>
+								</div>
+							</div>
+						</a>
+                    </div>
+                    
+                    {% endfor %}
+
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<div class="trending-ads">
+				<div class="container">
+				<!-- slider -->
+				<div class="trend-ads">
+					<h2>Trending Ads</h2>
+							<ul id="">
+								<li>
+                                    {% for product in product_by_date %}
+									<div class="col-md-3 biseller-column">
+										<a href="{% url 'Products:product_detail' product.slug %}">
+											<img src="{{product.image.url}}"/>
+											<span class="price">₹ {{product.price}}</span>
+										</a> 
+										<div class="ad-info">
+											<h5>{{product.description}}</h5>
+											<span></span>
+										</div>
+									</div>
+									{% endfor %}
+								</li>
+
+
+
+						</ul>
+					<script type="text/javascript">
+						 $(window).load(function() {
+							$("#flexiselDemo3").flexisel({
+								visibleItems:1,
+								animationSpeed: 1000,
+								autoPlay: true,
+								autoPlaySpeed: 5000,    		
+								pauseOnHover: true,
+								enableResponsiveBreakpoints: true,
+								responsiveBreakpoints: { 
+									portrait: { 
+										changePoint:480,
+										visibleItems:1
+									}, 
+									landscape: { 
+										changePoint:640,
+										visibleItems:1
+									},
+									tablet: { 
+										changePoint:768,
+										visibleItems:1
+									}
+								}
+							});
+							
+						});
+					   </script>
+					   <script type="text/javascript" src="{% static 'js/jquery.flexisel.js' %}"></script>
+					</div>   
+			</div>
+			<!-- //slider -->				
+			</div>
+			<div class="mobile-app">
+				<div class="container">
+					<div class="col-md-5 app-left">
+						<a href="#"><img src="{% static 'images/favicon.png' %}" alt=""></a>
+					</div>
+					<div class="col-md-7 app-right">
+						<h3>Sellit24 is the <span>Easiest</span> way for Selling and buying products online</h3>
+						<p>Purana Bahar, Andar naya</p>
+						<div class="app-buttons">
+							<div class="app-button">
+								<a href="#"><img src="{% static 'images/1.png' %}" alt=""></a>
+							</div>
+							<div class="app-button">
+								<a href="#"><img src="{% static 'images/2.png' %}" alt=""></a>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+        {% endblock body %}
