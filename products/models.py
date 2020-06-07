@@ -25,7 +25,7 @@ class Product(TimeStamp):
     owner=models.ForeignKey(User, on_delete=models.CASCADE) #product delted when user gets deleted
     category=models.ForeignKey('Category',on_delete=models.SET_NULL,null=True) #product remains,if category deleted
     condition=models.CharField("Condition",max_length=50,choices=CONDITION)
-    brand=models.ForeignKey('Brand',on_delete=models.SET_NULL,null=True)
+    brand=models.ForeignKey('Brand',on_delete=models.SET_NULL,null=True,blank=True)
     image=models.ImageField(upload_to='main_product/',blank=True,null=True)
     city_name=models.ForeignKey('Location',on_delete=models.SET_NULL,null=True)
     slug=models.SlugField(blank=True,null=True)

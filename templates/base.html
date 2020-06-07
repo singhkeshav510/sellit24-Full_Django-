@@ -87,11 +87,10 @@
 	  <div class="container">    
 			<h1>Sell or Advertise   <span class="segment-heading">    anything online </span> with Sellit24</h1>
 			<p>Purana Bahar , Andar Naya</p>
-			{% if user.is_authenticated %}
+			
 				<a href="{% url 'Products:post_product' %}">Post Free Ad</a>
-				{% else %}
-				<a href="{% url 'login' %}" > Post Free Ad</a>
-			{% endif %}
+
+
 			
 	  </div>
 	</div>

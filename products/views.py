@@ -6,7 +6,11 @@ from django.db.models import Count,Q
 from datetime import datetime,timedelta
 from django.shortcuts import get_object_or_404
 from .forms import ProductForm
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_http_methods
 
+@require_http_methods(["GET",])
+@login_required
 def product_list(request, category_slug=None,location_slug=None):
     category=None
     city=None
@@ -37,6 +41,7 @@ def product_list(request, category_slug=None,location_slug=None):
     context={'product_list':productlist,'category_list':categorylist,'category':category,'product_by_date':productbydate,'city_name':city,'location_list':locationlist}
     return render(request, template , context)
 
+
 def home_list(request, category_slug=None):
     category=None
 
@@ -55,7 +60,7 @@ def home_list(request, category_slug=None):
     context={'product_list':productlist,'category_list':categorylist,'category':category,'product_by_date':productbydate}
     return render(request, template , context)
 
-
+@login_required
 def product_detail(request,product_slug):
     productdetail=get_object_or_404(Product,slug=product_slug)
     productimages=Product_Image.objects.filter(product=productdetail)
@@ -63,6 +68,7 @@ def product_detail(request,product_slug):
     context={'product_detail':productdetail,'product_images':productimages}
     return render(request, template , context)
 
+@login_required
 def post_ad(request):
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES)
@@ -78,6 +84,7 @@ def post_ad(request):
         context={'form':form}
         return render(request, template , context)
 
+@login_required
 def my_list(request, category_slug=None,location_slug=None):
 
     productlist=Product.objects.all()
@@ -89,12 +96,14 @@ def my_list(request, category_slug=None,location_slug=None):
     template='Product/my_ads.html'
     context={'product_list':productlist}
     return render(request, template , context)
-
+    
+@login_required
 def delete_product(request, product_slug):
     productdetail=get_object_or_404(Product,slug=product_slug)
     productdetail.delete()
     return redirect('Products:my_list')
 
+@login_required
 def edit_product(request, product_slug):
     productdetail=get_object_or_404(Product,slug=product_slug)
     if request.method == "POST":
