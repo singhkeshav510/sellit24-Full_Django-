@@ -1,22 +1,23 @@
-# sellit24-Full_Django-
-Implemented fully in django
-## How to setup(on Linux)
-1. git clone (copy-repository link)
-2. setup virtual environment(if)
-3. Install django versionXX
-5. Make changes as per db in settings.py or if mysql then :
-    5.1 Terminal cmd: sudo vim /etc/mysql/my1.cnf
-    5.2 Add info to it :!includedir /etc/mysql/conf.d/
-                        !includedir /etc/mysql/mysql.conf.d/
-                          [client]
-                          database = 'xxxxxx'
-                          user = 'xxxx'
-                          password = 'xxxxxx'
-                          default-character-set = utf8
 
-6. create superuser for django administration
-7. move to directory containing manage.py
-8. Type cmd: python manage.py makemigrations followed by python manage.py migrate followed by python manage.py runserver,
-## Check if server starts running then move to specified link : 
-    Add /products in url
-   ## Here you got Sellit24 running.
+# Instructions for running Sellit24 or using it on Linux system:
+1. git clone Repo-link
+2. Activate Virtualenvironment if required.
+                    virtualenv venv
+                    source venv/bin/activate
+3. Move to project directory
+                    cd Sellit-Full_Django-
+4. cd sellit24
+5. Edit settings.py DATABASES section as per need.
+     In this project , My sql was used whose all info were store under /etc/mysql/ in my1.cnf
+     One need to set it up as per need of application while reusing code
+6. setup Database on system.
+7. After all database thing, Just use 
+                    python manage.py makemigration
+                    python manage.py migrate
+                    python manage.py runserver
+8. If any error comes , oyu can google it or mail me 
+
+
+
+
+![Alt text](https://github.com/singhkeshav510/sellit24-Full_Django-/blob/master/Screenshots/Home.png "Home Page")
