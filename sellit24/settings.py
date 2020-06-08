@@ -123,7 +123,7 @@ LOGIN_REDIRECT_URL='/products'
 #need to allow less secure apps in gmail
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'singhshanu510@gmail.com'
+EMAIL_HOST_USER = 'enter mail id'
 EMAIL_HOST_PASSWORD = api_key.password
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'singhshanu510@gmail.com'
+DEFAULT_FROM_EMAIL = 'enter mail id'
