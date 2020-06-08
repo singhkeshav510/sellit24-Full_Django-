@@ -27,6 +27,6 @@
 ![Alt text](https://github.com/singhkeshav510/sellit24-Full_Django-/blob/master/Screenshots/Reset_Password.png)
 In order to get this functionality edit settings.py and add you mail id and change settings of linked mail id with allowance to access api
 
-# Additonal
+# Additional
 You can even host your django project on [Here](https://www.pythonanywhere.com/) .
 ## Happy Learning
